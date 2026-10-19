@@ -1,0 +1,69 @@
+{
+  "colors": {
+    "gold": "#D4A017",
+    "goldLight": "#F5C451",
+    "charcoal": "#222222",
+    "gray": "#6B7280",
+    "background": "#F8F9FA",
+    "border": "#E5E7EB",
+    "success": "#168653",
+    "danger": "#DC3545",
+    "warning": "#F59E0B",
+    "info": "#2878C7"
+  },
+  "font": "Poppins; fallback Inter, Arial",
+  "spacingPx": [
+    4,
+    8,
+    12,
+    16,
+    20,
+    24,
+    32,
+    40,
+    48
+  ],
+  "radiusPx": {
+    "small": 8,
+    "medium": 12,
+    "large": 16,
+    "pill": 999
+  },
+  "frames": {
+    "mobile": {
+      "width": 390,
+      "height": 844
+    },
+    "dashboard": {
+      "width": 1440,
+      "height": 900
+    }
+  },
+  "note": "JSON de référence; l'import JSON ne crée pas automatiquement des variables Figma.",
+  "localization": {
+    "locale": "fr-CD",
+    "country": "CD",
+    "primaryCurrency": {
+      "code": "CDF",
+      "symbol": "FC",
+      "label": "Franc congolais"
+    },
+    "secondaryCurrency": {
+      "code": "USD",
+      "symbol": "$",
+      "label": "Dollar américain"
+    },
+    "dateFormat": "dd/MM/yyyy",
+    "timezone": "Africa/Kinshasa",
+    "paymentMethods": [
+      "Espèces CDF/FC",
+      "Espèces USD",
+      "M-Pesa",
+      "Orange Money",
+      "Airtel Money",
+      "Carte bancaire si disponible",
+      "Paiement mixte"
+    ],
+    "notes": "Prévoir l’affichage des montants en FC et USD. Les taux de conversion doivent être configurables par établissement et horodatés; ne pas convertir automatiquement sans taux choisi."
+  }
+}
