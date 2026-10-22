@@ -6,11 +6,11 @@
 - Dépendances installées de façon reproductible avec `npm ci` à partir du manifeste et du fichier `package-lock.json`.
 - `npm run dev` démarre le serveur Next.js local avec Webpack. Ce choix évite le plantage observé de Turbopack lors du lancement d’un processus fils dans l’environnement de préparation.
 - Le build utilise un seul worker Next.js (`experimental.cpus: 1`) après des erreurs Windows de création de répertoires avec le rendu statique parallèle. Cela peut rallonger les builds ; réévaluer le réglage sur l’environnement de développement/CI cible. Il n’altère pas le comportement des modules métier à l’exécution.
-- Aucun service externe ni base de production n’est requis par le squelette.
+- Le développement Prisma utilise les comptes distincts `restoplus_migrator`, `restoplus_app` et `restoplus_auth`. La migration technique initiale RLS reste en attente; aucun accès de production n'est configuré. `restoplus_account_ops` est requis par la révision de la migration, mais n'est pas provisionné; sa création et les appartenances temporaires de migration relèvent d'une autorisation administrative distincte.
 
 ## Test
 
-L’environnement de test devra être isolé de la production et utiliser des données synthétiques. Les tests futurs d’intégration PostgreSQL devront utiliser un compte applicatif soumis à RLS et un compte de migration distinct. Les secrets seront injectés par l’environnement d’exécution, jamais copiés dans le dépôt.
+L’environnement de test devra être isolé de la production et utiliser des données synthétiques. Des tests d'intégration PostgreSQL sont préparés pour les rôles runtime; ils restent à exécuter sur une base jetable explicitement autorisée. RLS n'est pas opérationnel tant que la migration n'est pas appliquée et les tests n'ont pas réussi. Les secrets seront injectés par l'environnement d'exécution, jamais copiés dans le dépôt. Le test runner natif Node et le paquet `pg` déjà installé sont utilisés; aucune dépendance n'a été ajoutée.
 
 ## Production
 
@@ -18,4 +18,4 @@ Le fournisseur et la région restent à choisir. Avant mise en production, docum
 
 ## Variables d’environnement
 
-Aucune variable n’est requise pour afficher le squelette ; aucun `.env.example` n’est donc ajouté. Lorsque PostgreSQL sera introduit, un exemple sans valeur réelle documentera les noms requis. Les fichiers `.env*` sont ignorés par Git.
+La configuration PostgreSQL locale utilise `MIGRATION_DATABASE_URL`, `APP_DATABASE_URL` et `AUTH_DATABASE_URL`, documentées dans `.env.example`; les valeurs réelles résident uniquement dans le `.env` local ignoré par Git. Ne pas afficher ni versionner les secrets. Aucune connexion de production n'est configurée.
