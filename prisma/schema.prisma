@@ -52,6 +52,7 @@ model Restaurant {
   menuProductVariants MenuProductVariant[]
   menuProductOptions MenuProductOption[]
   menuProductZonePrices MenuProductZonePrice[]
+  stockItems StockItem[]
 
   @@map("restaurants")
 }
