@@ -9,7 +9,7 @@ const PRESETS = [
   {
     label: "Propriétaire (Owner A)",
     description: "Accès complet : carte, commandes, caisse, annulations",
-    code: "test-a-2029c2",
+    code: "test-a-da3172",
     email: "owner-a@test.invalid",
     role: "OWNER",
   },
@@ -17,21 +17,14 @@ const PRESETS = [
     label: "Serveur (Waiter A)",
     description:
       "Prise de commande, consultation carte (pas de validation caisse)",
-    code: "test-a-2029c2",
+    code: "test-a-da3172",
     email: "waiter-a@test.invalid",
     role: "WAITER",
   },
   {
-    label: "Caissier (Cashier A)",
-    description: "Validation des commandes en caisse",
-    code: "test-a-2029c2",
-    email: "http-5c828299-3a9c-4661-afb1-4a1f251928ec@example.invalid",
-    role: "CASHIER",
-  },
-  {
     label: "Gérant (Manager A)",
     description: "Gestion opérationnelle, carte, caisse",
-    code: "test-a-2029c2",
+    code: "test-a-da3172",
     email: "manager-a@test.invalid",
     role: "MANAGER",
   },
@@ -39,7 +32,7 @@ const PRESETS = [
 
 export default function LoginPage() {
   const router = useRouter();
-  const [restaurantCode, setRestaurantCode] = useState("test-a-2029c2");
+  const [restaurantCode, setRestaurantCode] = useState("test-a-da3172");
   const [email, setEmail] = useState("owner-a@test.invalid");
   const [password, setPassword] = useState("TestPassword123!");
   const [loading, setLoading] = useState(false);
@@ -132,7 +125,7 @@ export default function LoginPage() {
               required
               value={restaurantCode}
               onChange={(e) => setRestaurantCode(e.target.value)}
-              placeholder="Ex: test-a-2029c2"
+              placeholder="Ex: test-a-da3172"
               className={styles.input}
             />
           </label>
