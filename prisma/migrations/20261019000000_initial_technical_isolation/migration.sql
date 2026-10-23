@@ -328,7 +328,6 @@ GRANT INSERT ("id", "restaurantId", "displayName", "updatedAt") ON "public"."use
 GRANT INSERT ("id", "restaurantId", "userId", "emailNormalized", "passwordHash", "updatedAt") ON "public"."auth_credentials" TO restoplus_bootstrap_owner;
 GRANT INSERT ("id", "restaurantId", "userId", "role") ON "public"."memberships" TO restoplus_bootstrap_owner;
 GRANT INSERT ("id", "restaurantId", "actorUserId", "eventType", "targetType", "targetId", "details") ON "public"."security_audit_events" TO restoplus_bootstrap_owner;
-SET ROLE restoplus_bootstrap_owner;
 CREATE FUNCTION "restoplus_private"."bootstrap_restaurant_owner"(
     p_restaurant_id UUID,
     p_public_code VARCHAR,
@@ -375,7 +374,7 @@ END;
 $bootstrap$;
 REVOKE ALL ON FUNCTION "restoplus_private"."bootstrap_restaurant_owner"(UUID, VARCHAR, VARCHAR, UUID, VARCHAR, VARCHAR, VARCHAR) FROM PUBLIC;
 GRANT EXECUTE ON FUNCTION "restoplus_private"."bootstrap_restaurant_owner"(UUID, VARCHAR, VARCHAR, UUID, VARCHAR, VARCHAR, VARCHAR) TO restoplus_auth;
-RESET ROLE;
+
 REVOKE CREATE ON SCHEMA "restoplus_private" FROM restoplus_bootstrap_owner;
 GRANT USAGE ON SCHEMA "restoplus_private" TO restoplus_auth;
 
@@ -470,7 +469,6 @@ CREATE POLICY "security_audit_events_account_ops_insert_tenant" ON "public"."sec
     );
 
 GRANT USAGE, CREATE ON SCHEMA "restoplus_private" TO restoplus_account_ops;
-SET ROLE restoplus_account_ops;
 
 CREATE FUNCTION "restoplus_private"."create_membership_invitation"(
     p_id UUID, p_email_normalized VARCHAR, p_role public.membership_role,
@@ -765,6 +763,5 @@ REVOKE ALL ON FUNCTION "restoplus_private"."accept_membership_invitation"(VARCHA
 REVOKE ALL ON FUNCTION "restoplus_private"."invitation_is_valid"(VARCHAR) FROM PUBLIC;
 GRANT EXECUTE ON FUNCTION "restoplus_private"."create_membership_invitation"(UUID, VARCHAR, public.membership_role, VARCHAR, TIMESTAMPTZ), "restoplus_private"."cancel_membership_invitation"(UUID), "restoplus_private"."list_membership_invitations"(), "restoplus_private"."manage_member"(UUID, public.membership_role, BOOLEAN, BOOLEAN), "restoplus_private"."set_restaurant_active"(BOOLEAN) TO restoplus_app;
 GRANT EXECUTE ON FUNCTION "restoplus_private"."reactivate_restaurant"(UUID, UUID), "restoplus_private"."accept_membership_invitation"(VARCHAR, UUID, VARCHAR, VARCHAR), "restoplus_private"."invitation_is_valid"(VARCHAR) TO restoplus_auth;
-RESET ROLE;
 REVOKE CREATE ON SCHEMA "restoplus_private" FROM restoplus_account_ops;
 GRANT USAGE ON SCHEMA "restoplus_private" TO restoplus_app, restoplus_auth;
