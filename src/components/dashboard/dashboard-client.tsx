@@ -120,7 +120,7 @@ export function DashboardClient({
         inactiveProducts={inactiveProducts}
       />
 
-      <div className="rp-primary-grid mt-7 grid gap-5 xl:grid-cols-[minmax(0,1.45fr)_minmax(300px,0.85fr)]">
+      <div className="rp-primary-grid mt-8 grid gap-6 xl:grid-cols-[minmax(0,1.5fr)_minmax(320px,0.8fr)]">
         <OrderList
           orders={orders}
           href="/commandes"
@@ -129,7 +129,7 @@ export function DashboardClient({
         <StockAlerts items={lowStockItems} href="/stocks" linkLabel="Voir le stock" />
       </div>
 
-      <div className="rp-secondary-grid mt-5 grid gap-5 xl:grid-cols-2">
+      <div className="rp-secondary-grid mt-6 grid gap-6 xl:grid-cols-2">
         <TableGrid tables={tables} occupied={occupiedTables} href="/tables" />
       </div>
     </DashboardLayout>
