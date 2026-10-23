@@ -32,16 +32,17 @@ const PRESETS = [
 
 export default function LoginPage() {
   const router = useRouter();
-  const [restaurantCode, setRestaurantCode] = useState("test-a-da3172");
-  const [email, setEmail] = useState("owner-a@test.invalid");
-  const [password, setPassword] = useState("TestPassword123!");
+  const [restaurantCode, setRestaurantCode] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
 
   async function handleLogin(
     e?: React.FormEvent,
-    customCreds?: { code: string; email: string },
+    customCreds?: { code: string; email: string; password?: string },
   ) {
     if (e) e.preventDefault();
     setLoading(true);
@@ -58,13 +59,23 @@ export default function LoginPage() {
         body: JSON.stringify({
           restaurantCode: targetCode.trim(),
           email: targetEmail.trim(),
-          password,
+          password: customCreds?.password ?? password,
         }),
       });
 
       const data = await res.json().catch(() => null);
 
       if (!res.ok) {
+        if (res.status === 401) {
+          throw new Error(
+            "Connexion refusée. Vérifiez le code du restaurant, votre e-mail et votre mot de passe, ou demandez de l’aide à votre responsable.",
+          );
+        }
+        if (res.status >= 500) {
+          throw new Error(
+            "Le service de connexion est momentanément indisponible. Réessayez dans un instant.",
+          );
+        }
         throw new Error(
           data?.error ?? `Erreur de connexion (HTTP ${res.status})`,
         );
@@ -78,7 +89,11 @@ export default function LoginPage() {
         router.refresh();
       }, 700);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Erreur de connexion");
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Connexion impossible. Vérifiez votre réseau et réessayez.",
+      );
     } finally {
       setLoading(false);
     }
@@ -88,7 +103,11 @@ export default function LoginPage() {
     setRestaurantCode(preset.code);
     setEmail(preset.email);
     setPassword("TestPassword123!");
-    void handleLogin(undefined, { code: preset.code, email: preset.email });
+    void handleLogin(undefined, {
+      code: preset.code,
+      email: preset.email,
+      password: "TestPassword123!",
+    });
   }
 
   return (
@@ -119,15 +138,22 @@ export default function LoginPage() {
 
         <form className={styles.form} onSubmit={handleLogin}>
           <label className={styles.label}>
-            <span>Code restaurant</span>
+            <span>Code du restaurant</span>
             <input
               type="text"
               required
+              autoComplete="organization"
+              autoCapitalize="none"
+              spellCheck={false}
               value={restaurantCode}
               onChange={(e) => setRestaurantCode(e.target.value)}
-              placeholder="Ex: test-a-da3172"
+              placeholder="Code fourni par votre responsable"
               className={styles.input}
             />
+            <span className={styles.fieldHint}>
+              Ce code identifie votre établissement. Demandez-le au propriétaire
+              ou au gérant si vous ne l’avez pas.
+            </span>
           </label>
 
           <label className={styles.label}>
@@ -135,6 +161,7 @@ export default function LoginPage() {
             <input
               type="email"
               required
+              autoComplete="username"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="utilisateur@domaine.com"
@@ -144,13 +171,28 @@ export default function LoginPage() {
 
           <label className={styles.label}>
             <span>Mot de passe</span>
-            <input
-              type="password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className={styles.input}
-            />
+            <div className={styles.passwordField}>
+              <input
+                type={showPassword ? "text" : "password"}
+                required
+                autoComplete="current-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className={styles.input}
+              />
+              <button
+                type="button"
+                className={styles.passwordToggle}
+                onClick={() => setShowPassword((visible) => !visible)}
+                aria-label={
+                  showPassword
+                    ? "Masquer le mot de passe"
+                    : "Afficher le mot de passe"
+                }
+              >
+                {showPassword ? "Masquer" : "Afficher"}
+              </button>
+            </div>
           </label>
 
           <button type="submit" disabled={loading} className={styles.submitBtn}>
@@ -158,13 +200,13 @@ export default function LoginPage() {
           </button>
         </form>
 
-        <section className={styles.presetsSection}>
-          <h2 className={styles.presetsTitle}>
-            Accès rapide aux comptes de test
-          </h2>
+        <details className={styles.presetsSection}>
+          <summary className={styles.presetsTitle}>
+            Accès de démonstration
+          </summary>
           <p className={styles.presetsSubtitle}>
-            Base isolée <code>restoplus_test_disposable</code> (mot de passe
-            automatique)
+            Réservé à la base isolée de test. Ces comptes ne fonctionnent pas
+            avec les données réelles de votre restaurant.
           </p>
           <div className={styles.presetGrid}>
             {PRESETS.map((p) => (
@@ -184,7 +226,7 @@ export default function LoginPage() {
               </button>
             ))}
           </div>
-        </section>
+        </details>
 
         <nav className={styles.navLinks}>
           <Link href="/menus">Carte & Menus</Link>
