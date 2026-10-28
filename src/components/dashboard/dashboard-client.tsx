@@ -1,10 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import type { ReactNode } from "react";
-import type { AuthenticatedActor } from "@/server/auth/session";
-import type { OrderRecord } from "@/server/orders/service";
-import type { DiningTable } from "@/server/tables/service";
+import type { AuthenticatedActor, DiningTable, OrderRecord } from "@/lib/demo-types";
 import { DashboardLayout } from "./dashboard-layout";
 import { DashboardMetrics } from "./dashboard-metrics";
 import { OrderList } from "./order-list";
@@ -34,7 +31,7 @@ export function DashboardClient({
   tables: DiningTable[];
   catalog: Catalog;
 }) {
-  const today = new Date();
+  const today = useMemo(() => new Date(), []);
   const todayStr = today.toLocaleDateString("fr-CD", {
     weekday: "long",
     day: "numeric",

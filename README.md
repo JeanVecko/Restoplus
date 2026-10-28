@@ -1,13 +1,8 @@
 # Resto+
 
-Socle technique de l’application web Resto+ pour les restaurants en RDC. Le cahier des charges v1.2 et les ressources de conception restent dans `docs/` et `design/`.
+Resto+ est actuellement une maquette frontend interactive. Elle permet de parcourir le tableau de bord, la carte, les commandes, les tables, les stocks, les rapports, les paramètres et l’administration de démonstration.
 
-## Prérequis
-
-- Node.js 20.9 ou supérieur (le poste utilisé pour préparer ce squelette dispose de Node.js 24.19.0).
-- npm.
-
-## Lancer sous Windows
+## Démarrer
 
 Dans PowerShell, depuis ce dossier :
 
@@ -16,21 +11,12 @@ npm ci
 npm run dev
 ```
 
-Ouvrir ensuite `http://localhost:3000`. Pour exécuter les contrôles :
+Ouvrez ensuite [http://localhost:3000](http://localhost:3000). Les écrans de connexion proposent une ouverture de la démonstration sans identifiants serveur.
 
-```powershell
-npm run lint
-npm run typecheck
-npm run format:check
-```
+## Données de démonstration
 
-`npm run format` applique le formatage. Le fichier `package-lock.json` verrouille les dépendances ; après toute modification des dépendances, conserver ses mises à jour avec `package.json`.
+Les données affichées sont fictives. Les ajouts, modifications d’état et suppressions sont stockés dans le `localStorage` du navigateur utilisé. Le bouton **Réinitialiser la démo** restaure les exemples initiaux. Ces données ne sont ni partagées entre appareils ni sauvegardées sur un serveur.
 
-## Documentation technique
+## État du projet
 
-- [Architecture](docs/architecture.md)
-- [Sécurité multi-restaurant et RLS](docs/security-multitenancy.md)
-- [Stratégie de recette RLS](docs/acceptance-security.md)
-- [Environnements et exploitation](docs/environments.md)
-
-Le Jalon 1 ne contient aucun module métier et ne configure aucune connexion PostgreSQL. Voir les limites décrites dans les documents ci-dessus.
+Cette version ne contient plus d’API applicative, de connexion PostgreSQL, de schéma/migrations Prisma, ni de comptes utilisateurs réels. L’authentification, les invitations, la synchronisation en ligne et la persistance multi-appareils ne sont donc pas actives. La reconnexion d’un backend devra être conçue après validation des parcours frontend.

@@ -1,0 +1,122 @@
+.page {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  background:
+    radial-gradient(ellipse at 78% 15%, rgb(110 58 145 / 22%), transparent 38%),
+    radial-gradient(ellipse at 16% 88%, rgb(194 105 12 / 12%), transparent 38%),
+    #0d0f14;
+  color: #f3f4f6;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.card {
+  display: flex;
+  width: 100%;
+  max-width: 500px;
+  flex-direction: column;
+  gap: 1.15rem;
+  border: 1px solid rgb(255 255 255 / 9%);
+  border-radius: 1.25rem;
+  background: rgb(22 27 34 / 94%);
+  padding: clamp(1.5rem, 6vw, 2.5rem);
+  box-shadow: 0 24px 70px rgb(0 0 0 / 45%);
+}
+
+.brand {
+  margin: 0;
+  color: #f2aa24;
+  font-size: 1.85rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.title {
+  margin: -0.5rem 0 0;
+  color: #f8fafc;
+  font-size: clamp(1.55rem, 5vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+
+.description {
+  margin: -0.65rem 0 0.4rem;
+  color: #a1a8b3;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  color: #d1d5db;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.input {
+  width: 100%;
+  min-height: 3.25rem;
+  border: 1px solid #343a44;
+  border-radius: 0.7rem;
+  outline: none;
+  background: #0d1117;
+  padding: 0.75rem 0.9rem;
+  color: #f8fafc;
+  font: inherit;
+  font-weight: 400;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.input:focus {
+  border-color: #e99a16;
+  box-shadow: 0 0 0 3px rgb(233 154 22 / 20%);
+}
+
+.submit {
+  min-height: 3.35rem;
+  margin-top: 0.4rem;
+  border: 0;
+  border-radius: 0.7rem;
+  background: linear-gradient(100deg, #f0a21b, #d97706);
+  color: #171717;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 750;
+  transition: filter 150ms ease, transform 150ms ease;
+}
+
+.submit:hover:not(:disabled) {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.submit:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.error {
+  margin: 0;
+  border: 1px solid rgb(248 113 113 / 35%);
+  border-radius: 0.7rem;
+  background: rgb(127 29 29 / 25%);
+  padding: 0.8rem 0.9rem;
+  color: #fecaca;
+  font-size: 0.875rem;
+}
+
+.backLink {
+  align-self: center;
+  color: #aeb4bf;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+.backLink:hover {
+  color: #f3bd57;
+}

@@ -1,4 +1,3 @@
-import type { ReactNode } from "react";
 import { Icon } from "./dashboard-icon";
 
 export function SectionHeading({
@@ -127,7 +126,7 @@ export function DashboardMetrics({
       <MetricCard
         label="Tables occupées"
         value={`${occupied} / ${total}`}
-        sub={`${Math.max(total - occupied, 0)} tables libres · ${activeProducts} produits actifs`}
+        sub={`${Math.max(total - occupied, 0)} tables libres · ${activeProducts} actifs, ${inactiveProducts} indisponibles`}
         icon="table"
         color="bg-violet-50 text-violet-600"
         gradient="bg-violet-400"

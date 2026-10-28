@@ -1,5 +1,2 @@
-import OrderWorkspace from "@/features/orders/components/order-workspace";
-
-export default function KitchenPage() {
-  return <OrderWorkspace mode="kitchen" />;
-}
+import { DemoApp } from "@/lib/demo-app";
+export default function KitchenPage() { return <DemoApp page="cuisine" />; }

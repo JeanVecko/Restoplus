@@ -55,6 +55,37 @@
   line-height: 1.4;
 }
 
+.adminAccess {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-top: 1.15rem;
+  border: 1px solid rgb(229 169 59 / 28%);
+  border-radius: 0.7rem;
+  background: rgb(229 169 59 / 7%);
+  padding: 0.8rem 1rem;
+  color: #d1d5db;
+  text-align: left;
+  text-decoration: none;
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+
+.adminAccess:hover {
+  border-color: rgb(229 169 59 / 65%);
+  background: rgb(229 169 59 / 12%);
+}
+
+.adminAccess > span {
+  color: #a1a8b3;
+  font-size: 0.78rem;
+}
+
+.adminAccess strong {
+  color: #f3bd57;
+  font-size: 0.86rem;
+  font-weight: 650;
+}
+
 .errorAlert {
   background: rgba(239, 68, 68, 0.15);
   border: 1px solid #ef4444;

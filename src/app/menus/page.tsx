@@ -1,5 +1,2 @@
-import MenuWorkspace from "@/features/menu/components/menu-workspace";
-
-export default function MenusPage() {
-  return <MenuWorkspace />;
-}
+import { DemoApp } from "@/lib/demo-app";
+export default function MenusPage() { return <DemoApp page="menus" />; }

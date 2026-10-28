@@ -1,5 +1,2 @@
-import OrderWorkspace from "@/features/orders/components/order-workspace";
-
-export default function OrdersPage() {
-  return <OrderWorkspace mode="service" />;
-}
+import { DemoApp } from "@/lib/demo-app";
+export default function OrdersPage() { return <DemoApp page="commandes" />; }

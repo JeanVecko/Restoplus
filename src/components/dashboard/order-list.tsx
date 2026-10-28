@@ -1,5 +1,4 @@
-import Link from "next/link";
-import type { OrderRecord } from "@/server/orders/service";
+import type { OrderRecord } from "@/lib/demo-types";
 import { SectionHeading } from "./dashboard-metrics";
 
 function statusLabel(status: OrderRecord["status"]) {

@@ -1,4 +1,4 @@
-import type { DiningTable } from "@/server/tables/service";
+import type { DiningTable } from "@/lib/demo-types";
 import { SectionHeading } from "./dashboard-metrics";
 
 function statusTone(table: DiningTable, occupied: DiningTable[]) {

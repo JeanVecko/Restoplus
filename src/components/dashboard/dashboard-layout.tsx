@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import type { AuthenticatedActor } from "@/server/auth/session";
+import type { AuthenticatedActor } from "@/lib/demo-types";
 import { Icon } from "./dashboard-icon";
 
 const navigation: {

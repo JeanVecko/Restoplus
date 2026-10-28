@@ -1,0 +1,212 @@
+.page {
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 84% 0%, rgb(91 49 119 / 17%), transparent 34%),
+    #0d0f14;
+  padding: 2rem clamp(1rem, 5vw, 3rem) 3rem;
+  color: #f8fafc;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header,
+.restaurantHeading,
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.header {
+  width: min(100%, 1150px);
+  margin: 0 auto 2rem;
+}
+
+.header h1 {
+  margin: 0.35rem 0 0;
+  font-size: clamp(1.8rem, 5vw, 2.4rem);
+  letter-spacing: -0.04em;
+}
+
+.kicker {
+  margin: 0;
+  color: #f3ad2a;
+  font-size: 0.75rem;
+  font-weight: 750;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.email {
+  margin: 0.45rem 0 0;
+  color: #a3aab5;
+  font-size: 0.9rem;
+}
+
+.logout,
+.action {
+  min-height: 2.65rem;
+  border: 1px solid #3b414c;
+  border-radius: 0.7rem;
+  background: #171b22;
+  padding: 0.55rem 0.9rem;
+  color: #e5e7eb;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 650;
+  transition: background 150ms ease, border-color 150ms ease;
+}
+
+.logout:hover,
+.action:hover:not(:disabled) {
+  border-color: #737b88;
+  background: #222833;
+}
+
+.stats,
+.panel {
+  width: min(100%, 1150px);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat,
+.panel {
+  border: 1px solid rgb(255 255 255 / 9%);
+  border-radius: 1rem;
+  background: rgb(22 27 34 / 94%);
+  box-shadow: 0 10px 30px rgb(0 0 0 / 15%);
+}
+
+.stat {
+  padding: 1.2rem 1.35rem;
+}
+
+.stat p {
+  margin: 0;
+  color: #a1a8b3;
+  font-size: 0.85rem;
+}
+
+.stat strong {
+  display: block;
+  margin-top: 0.45rem;
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1.1;
+}
+
+.panel {
+  overflow: hidden;
+}
+
+.panelHeader {
+  border-bottom: 1px solid rgb(255 255 255 / 9%);
+  padding: 1.2rem 1.4rem;
+}
+
+.panelHeader h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.panelHeader p {
+  margin: 0.35rem 0 0;
+  color: #a1a8b3;
+  font-size: 0.85rem;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.row {
+  padding: 1.15rem 1.4rem;
+}
+
+.row + .row {
+  border-top: 1px solid rgb(255 255 255 / 8%);
+}
+
+.restaurantHeading {
+  justify-content: flex-start;
+  gap: 0.65rem;
+}
+
+.restaurantHeading h3 {
+  margin: 0;
+  font-size: 0.98rem;
+}
+
+.active,
+.inactive {
+  border-radius: 99px;
+  padding: 0.28rem 0.65rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.active {
+  background: #073b2d;
+  color: #9ae6c8;
+}
+
+.inactive {
+  background: #30343b;
+  color: #d1d5db;
+}
+
+.details {
+  margin: 0.4rem 0 0;
+  color: #9da5b1;
+  font-size: 0.82rem;
+}
+
+.empty {
+  padding: 1.5rem;
+  color: #cbd5e1;
+}
+
+.action:disabled {
+  cursor: wait;
+  opacity: 0.55;
+}
+
+.notice {
+  width: min(100%, 1150px);
+  margin: 0 auto 1rem;
+  border: 1px solid rgb(245 158 11 / 30%);
+  border-radius: 0.8rem;
+  background: rgb(120 53 15 / 30%);
+  padding: 0.9rem 1rem;
+  color: #fde68a;
+}
+
+.footer {
+  width: min(100%, 1150px);
+  margin: 1rem auto 0;
+  color: #727b89;
+  font-size: 0.75rem;
+}
+
+@media (max-width: 640px) {
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  .row {
+    align-items: flex-start;
+  }
+}
